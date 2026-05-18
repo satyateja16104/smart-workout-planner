@@ -31,6 +31,7 @@ class GymEquipment(TimeStampedModel):
     )
 
     quantity = models.PositiveIntegerField(default=1)
-
+    class Meta:
+        unique_together = ("gym", "equipment_type")
     def __str__(self):
         return f"{self.gym.name} - {self.equipment_type}"

@@ -7,9 +7,11 @@ class GymSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gym
         fields = "__all__"
+        read_only_fields = ["created_at", "updated_at"]
 
 
 class GymEquipmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = GymEquipment
         fields = "__all__"
+        read_only_fields = ["created_at", "updated_at"]

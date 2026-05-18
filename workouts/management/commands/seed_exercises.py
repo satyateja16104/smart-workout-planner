@@ -12,7 +12,7 @@ class Command(BaseCommand):
         updated_count = 0
 
         for exercise_data in EXERCISES:
-            exercise, created = Exercise.objects.update_or_create(
+            _, created = Exercise.objects.update_or_create(
                 name=exercise_data["name"],
                 defaults=exercise_data,
             )

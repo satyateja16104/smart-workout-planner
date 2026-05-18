@@ -7,11 +7,18 @@ from .serializers import (
 )
 
 
-class UserProfileViewSet(viewsets.ModelViewSet):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
+from rest_framework.permissions import IsAuthenticated
 
+class UserProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return UserProfile.objects.filter(user=self.request.user)
 
 class InjuryRecordViewSet(viewsets.ModelViewSet):
-    queryset = InjuryRecord.objects.all()
     serializer_class = InjuryRecordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return InjuryRecord.objects.filter(profile__user=self.request.user)

@@ -11,6 +11,7 @@ from common.constants.choices import (
     MuscleGroup,
     WorkoutSplit,
 )
+from django.core.validators import MinValueValidator
 from common.models.base import TimeStampedModel
 from common.validators.injury_tags import (
     validate_injury_tags,
@@ -115,7 +116,9 @@ class ExercisePerformance(TimeStampedModel):
         related_name="performances",
     )
 
-    performed_weight = models.FloatField()
+    performed_weight = models.FloatField(
+        validators=[MinValueValidator(0)],
+    )
 
     performed_reps = models.PositiveIntegerField()
 
