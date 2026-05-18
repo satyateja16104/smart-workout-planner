@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import InjuryRecord, UserProfile
+from .serializers import (
+    InjuryRecordSerializer,
+    UserProfileSerializer,
+)
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
+
+class InjuryRecordViewSet(viewsets.ModelViewSet):
+    queryset = InjuryRecord.objects.all()
+    serializer_class = InjuryRecordSerializer

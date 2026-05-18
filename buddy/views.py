@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import BuddyPair
+from .serializers import BuddyPairSerializer
+
+
+class BuddyPairViewSet(viewsets.ModelViewSet):
+    queryset = BuddyPair.objects.all()
+    serializer_class = BuddyPairSerializer
